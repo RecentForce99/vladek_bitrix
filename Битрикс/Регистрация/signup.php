@@ -49,10 +49,7 @@ $result = Array(
                         $result['UF_UNIQUE_ID'] = $val;
                     }
                 }
-                else
-                {
-                    die('Ошибка при заполнении ID. Укажите по следующему шаблону: RU00000000');
-                }
+                else die('Ошибка при заполнении ID. Укажите по следующему шаблону: RU00000000');
             }
             elseif($key == 'FCS')
             {
@@ -70,10 +67,7 @@ $result = Array(
                         $result['SECOND_NAME'] = $fcs[2];
                     }
                 }
-                else
-                {
-                    die('Проверьте длину поля "ФИО", оно должно быть не меньше 5 и не больше 256 символов.');
-                }
+                else die('Проверьте длину поля "ФИО", оно должно быть не меньше 5 и не больше 256 символов.');
             }
             elseif($key == 'PERSONAL_BIRTHDAY')
             {
@@ -93,10 +87,7 @@ $result = Array(
                         else die('Ошибка при заполнении даты рождения. Укажите по следующему шаблону: 01.01.1970');
                     }
                 }
-                else
-                {
-                    die('Ошибка при заполнении даты рождения. Укажите по следующему шаблону: 01.01.1970');
-                }
+                else die('Ошибка при заполнении даты рождения. Укажите по следующему шаблону: 01.01.1970');
             }
             elseif($key == 'EMAIL' )
             {
@@ -113,10 +104,7 @@ $result = Array(
                     }
                     else $result['EMAIL'] = $val;
                 }
-                else
-                {
-                    die('Проверьте длину поля "E-mail", оно должно быть не больше 255 символов.');
-                }
+                else die('Проверьте длину поля "E-mail", оно должно быть не больше 255 символов.');
 
             }
             elseif($key == 'PASSWORD')
@@ -124,14 +112,13 @@ $result = Array(
                 if (strlen($val) > 5) $result[$key] = $val;
                 else
                 {
-                    if ($key === 'PASSWORD' )  echo 'Длина поля "Пароль" должно быть не менее 5 символов.';
-                    die;
+                    if ($key === 'PASSWORD' ) die('Длина поля "Пароль" должно быть не менее 5 символов.');
                 }
             }
 
     }
 
-        $USER = new CUser;
-        $ID = $USER->Add($result);
-        if (intval($ID) > 0) print_r(1);
-        else die($USER->LAST_ERROR);
+    $USER = new CUser;
+    $ID = $USER->Add($result);
+    if (intval($ID) > 0) echo 1;
+    else die($USER->LAST_ERROR);
