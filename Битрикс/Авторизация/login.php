@@ -4,18 +4,18 @@ require_once($_SERVER['DOCUMENT_ROOT']. "/bitrix/modules/main/include/prolog_bef
 global $APPLICATION;
 $USER = new CUser;
 
-$id = filter_var(trim(htmlspecialchars(strip_tags($_POST['ID']))), FILTER_SANITIZE_STRING);
-$pass = filter_var(trim(htmlspecialchars(strip_tags($_POST['PASSWORD']))), FILTER_SANITIZE_STRING);
+$login = filter_var(trim(htmlspecialchars(strip_tags($_POST['LOGIN']))), FILTER_SANITIZE_STRING);
+$pass  = filter_var(trim(htmlspecialchars(strip_tags($_POST['PASSWORD']))), FILTER_SANITIZE_STRING);
 
-if($id !== '' && $pass !== '')
+if($login !== '' && $pass !== '')
 {
-    $arAuthResult = $USER->Login($id, $pass, "Y");
+    $arAuthResult = $USER->Login($login, $pass, "Y");
     $result = $APPLICATION->arAuthResult = $arAuthResult;
 
     if(strval($result) == 1) print_r(1);
-    else die('Неверный логин/пароль или Ваш аккаунт ещё не был активирован');
+    else die('Неверный логин или пароль.');
 }
 else
 {
-    $result = 'Вы не указали все данные';
+    $result = 'Вы не указали все данные.';
 }
