@@ -1,4 +1,0 @@
-.disabled-btn {
-    pointer-events: none; /* делаем ссылку некликабельной */
-    cursor: default; /* устанавливаем курсор в виде стрелки */
-}
