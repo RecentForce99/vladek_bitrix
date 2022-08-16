@@ -14,8 +14,8 @@
                      if (response == 1) location.reload();
                      else
                      {
-                         $('.alert-warning-login').css('display', 'block')
                          $('.errortext-login').text(response)
+                         $('.alert-warning-login').css('display', 'block')
 
                          setTimeout(function () {
                              $('.alert-warning-login').css('display', 'none')

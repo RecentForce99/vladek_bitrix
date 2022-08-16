@@ -12,8 +12,8 @@ $(document).ready(function () { // SIGN UP
                      success: function (response) {
                          if (response != 1)
                          {
-                             $('.alert-warning-signup').css('display', 'block')
                              $('.errortext-signup').text(response)
+                             $('.alert-warning-signup').css('display', 'block')
 
                              setTimeout(function () {
                                  $('.alert-warning-signup').css('display', 'none')
