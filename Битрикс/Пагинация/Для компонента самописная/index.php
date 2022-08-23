@@ -1,4 +1,4 @@
-<?php
+<?php 
 $GLOBALS['NEWS']['NAV_RESULT'];
 // Список новостей
 $APPLICATION->IncludeComponent(
