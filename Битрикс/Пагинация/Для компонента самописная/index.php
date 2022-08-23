@@ -1,4 +1,6 @@
-<?php // Список новостей
+<?php
+$GLOBALS['NEWS']['NAV_RESULT'];
+// Список новостей
 $APPLICATION->IncludeComponent(
     "bitrix:news.list",
     "template2",
