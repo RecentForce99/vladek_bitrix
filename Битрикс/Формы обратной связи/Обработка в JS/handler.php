@@ -2,16 +2,22 @@
 CModule::IncludeModule('iblock');
 global $USER;
 
-$props = ['PHONE' => $_POST['PHONE']];
+$props = [
+    'EMAIL' => filter_var(trim(htmlspecialchars(strip_tags($_POST['EMAIL']))), FILTER_SANITIZE_STRING),
+    'PHONE' => filter_var(trim(htmlspecialchars(strip_tags($_POST['PHONE']))), FILTER_SANITIZE_STRING),
+    'URL'   => filter_var(trim(htmlspecialchars(strip_tags($_POST['URL']))), FILTER_SANITIZE_STRING),
+    'MESSAGE' => ["VALUE" => ["TEXT" => filter_var(trim(htmlspecialchars(strip_tags($_POST['MESSAGE']))), FILTER_SANITIZE_STRING), "TYPE" => "TEXT"]]
+];
+
 
 $el = new CIBlockElement;
 
 $upload = Array(
     "MODIFIED_BY"    => $USER->GetID(),
-    "IBLOCK_SECTION_ID" => 78,
+    "IBLOCK_SECTION_ID" => 79,
     "IBLOCK_ID"      => 43,
     "PROPERTY_VALUES"=> $props,
-    "NAME"           => $_POST['NAME'],
+    "NAME"           => filter_var(trim(htmlspecialchars(strip_tags($_POST['NAME']))), FILTER_SANITIZE_STRING),
     "ACTIVE"         => "Y",
 );
 if($PRODUCT_ID = $el->Add($upload))
