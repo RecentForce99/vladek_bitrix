@@ -8,9 +8,6 @@ function getListName($prop)
 
     if ( Loader::IncludeModule('highloadblock') && !empty($sTableName) && !empty($arHighloadProperty["VALUE"]) )
     {
-        /**
-         * @var array Описание Highload-блока
-         */
         $hlblock = HL\HighloadBlockTable::getRow([
             'filter' => [
                 '=TABLE_NAME' => $sTableName
@@ -19,10 +16,6 @@ function getListName($prop)
 
         if ( $hlblock )
         {
-            /**
-             * Магия highload-блоков компилируем сущность, чтобы мы смогли с ней работать
-             *
-             */
             $entity      = HL\HighloadBlockTable::compileEntity( $hlblock );
             $entityClass = $entity->getDataClass();
 
@@ -52,17 +45,8 @@ function getListName($prop)
 
     $arHighloadProperty = $arResult["PROPERTIES"]['TEST'];
 
-/**
- * @var string название таблицы справочника
- */
 $sTableName = $arHighloadProperty['USER_TYPE_SETTINGS']['TABLE_NAME'];
 
-/**
- * Работаем только при условии, что
- *    - модуль highloadblock подключен
- *    - в описании присутствует таблица
- *    - есть заполненные значения 
- */
 if ( Loader::IncludeModule('highloadblock') && !empty($sTableName) && !empty($arHighloadProperty["VALUE"]) )
 {
   
