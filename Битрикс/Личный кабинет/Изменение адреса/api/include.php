@@ -2,8 +2,8 @@
 
 function getSdekCities($cityName)
 {
-    $clientId = 'DkQ06WKuhf30MTm61XE1eDHln9J6LcEF';
-    $clientSecret = '1T7339tHKaC4nXQ7wej9eOnMR8ecRQwG';
+    $clientId = 'clientID';
+    $clientSecret = 'clientSecret';
     if (!(isset($clientId) and isset($clientSecret) and (($clientId."") != "") and (($clientSecret."") != ""))) {echo "Вы не заполнили \$clientId или \$clientSecret необходимые для получения авторизационного токена.";exit;}
     $curl1 = curl_init();//Инициализируем переменную CURL
     $postFieldsAr = array(//В 3-х строчках ниже данные которые передаются методом POST в первом запросе(то есть в запросе авторизационного токена), в втором запросе они не используются
