@@ -6,7 +6,7 @@ CModule::IncludeModule("sale");
 use Bitrix\Sale;
 global $USER;
 
-$APPLICATION->IncludeComponent(
+$APPLICATION->IncludeComponent( //https://github.com/RecentForce99/vladek_bitrix/blob/main/Битрикс/Скидки/discount.php
     "bitrix:main.include",
     "",
     Array(
