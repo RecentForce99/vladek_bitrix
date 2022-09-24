@@ -8,4 +8,4 @@
         $tmp = mb_substr($str, 0, $length, $encoding);
         return mb_substr($tmp, 0, mb_strripos($tmp, ' ', 0, $encoding), $encoding) . $postfix;
     };
-> 
+?> 
