@@ -7,9 +7,10 @@ $arUser = $rsUser->Fetch();
 
 $items = CIBlockElement::GetList(array(), Array('IBLOCK_ID' => array(2, 3), 'ACTIVE' => 'Y',
     array(
+        '>QUANTITY' => 0,
         "LOGIC" => "OR",
-        array('PROPERTY_ARTNUMBER' => '%' . $_POST['INPUT'] . '%', '>QUANTITY' => 0,),
-        array('NAME' => '%' . $_POST['INPUT'] . '%', '>QUANTITY' => 0,),
+        array('PROPERTY_ARTNUMBER' => '%' . $_POST['INPUT'] . '%'),
+        array('NAME' => '%' . $_POST['INPUT'] . '%'),
     ),
 ), false, array('nTopCount' => 5),
     array('ID', 'NAME', 'DETAIL_PAGE_URL', 'QUANTITY', 'IBLOCK_ID'));
