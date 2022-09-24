@@ -6,18 +6,28 @@ CModule::IncludeModule("sale");
 use Bitrix\Sale;
 global $USER;
 
-$APPLICATION->IncludeComponent( //https://github.com/RecentForce99/vladek_bitrix/blob/main/Битрикс/Скидки/discount.php
-    "bitrix:main.include",
-    "",
-    Array(
-        "AREA_FILE_SHOW" => "file",
-        "AREA_FILE_SUFFIX" => "inc",
-        "COMPOSITE_FRAME_MODE" => "A",
-        "COMPOSITE_FRAME_TYPE" => "AUTO",
-        "EDIT_TEMPLATE" => "",
-        "PATH" => "/include/discount.php"
-    )
-);
+ 
+
+    function getPriceWithDiscount($itemID, $price) 
+    {
+        global $USER;
+        $groups = $USER->GetUserGroupArray();
+        $arDiscounts = \CCatalogDiscount::GetDiscountByProduct(
+            $itemID,
+            $groups,
+            "N",
+            1,
+            's1'
+        );
+        if(empty($arDiscounts)) return ceil($price);
+
+        foreach ($arDiscounts as $discount)
+        {
+            $result = $price - ($price / 100 * $discount['VALUE']);
+        }
+
+        return ceil($result);
+    }
 
 function getItemsCount($firstCountFromForm) : array
 {
