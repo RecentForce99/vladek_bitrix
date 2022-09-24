@@ -9,6 +9,20 @@ $static = $statics->GetNext();
 
 $APPLICATION->SetTitle($static['PROPERTY_EXARCH_AFRICA_VALUE']);
 
+function getIDHashtagByName($name)
+{
+    $items = CIBlockElement::GetList(array(), array('ACTIVE' => 'Y', //Получаем элементы по поиску
+        'IBLOCK_ID' => $langAr['EXARCHAT_HASHTAGS'],
+        'NAME' => $name
+    ), false, false,
+        array('ID'));
+    $item = $items->GetNext();
+    $res = $item['ID'];
+
+    return $res;
+}
+
+
 function uniqueMult($array, $key)
 {
     $temp_array = array();
@@ -58,7 +72,7 @@ else
         'PROPERTY_HESHTEG' => $_GET['hashtag']
     ), false, false,
         array('ID', 'NAME', 'DETAIL_PAGE_URL', 'IBLOCK_ID', 'PREVIEW_TEXT'));
-    while($item = $items->GetNext()) {$res[$item['ID']] = $item;}
+    while($item = $items->GetNext()) {$res[] = $item;}
 }
 
 
@@ -66,6 +80,7 @@ $countStart = count($res);
 $elementsCount = 12;
 $pagin = ($_GET['PAGE_ID']) ? $_GET['PAGE_ID'] : 0;
 $result = array_chunk($res, $elementsCount);
+
 
 ?>
 <main class="main">
