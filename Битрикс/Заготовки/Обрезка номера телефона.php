@@ -1,17 +1,16 @@
 <?php
-    function getPhoneNumber($number)
+function getPhoneNumber($number)
+{
+    $phone = [];
+
+    for($i = 0; $i < strlen($number); $i++ )
     {
-        $n = 0;
-        $phone = [];
-
-        for($i = 0; $i < strlen($number); $i++ )
+        if(is_numeric($number[$i]) || $number[$i] == '+')
         {
-            if( ((int)$number[$i] || $number[$i] == 0) && $number[$i] !== ' ' && $number[$i] !== '-' && $number[$i] !== '(' && $number[$i] !== ')')
-            {
-                $phone[$n]['url'] .= $number[$i];
-            }
+            $phone['url'] .= $number[$i];
         }
-
-        return $phone[0]['url'];
     }
+
+    return $phone['url'];
+}
 ?>
