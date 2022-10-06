@@ -1,4 +1,23 @@
 <?php
+
+function getButtonsEditable(array $objectArg) : array
+{
+    $object = [];
+
+    $arButtons = CIBlock::GetPanelButtons($objectArg['IBLOCK_ID'], $objectArg['ID']);
+        $object['ADD_LINK'] = $arButtons["edit"]["add_element"]["ACTION_URL"];
+        $object['EDIT_LINK'] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+        $object['DELETE_LINK'] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
+
+        $object["ADD_LINK_TEXT"] = $arButtons["edit"]["add_element"]["TEXT"];
+        $object["EDIT_LINK_TEXT"] = $arButtons["edit"]["edit_element"]["TEXT"];
+        $object["DELETE_LINK_TEXT"] = $arButtons["edit"]["delete_element"]["TEXT"];
+
+    return $object;
+}
+   
+
+
     $arButtons = CIBlock::GetPanelButtons(
         $item['IBLOCK_ID'],
         $item['ID'], // указываем либо ID элемента, либо ID раздела ниже
