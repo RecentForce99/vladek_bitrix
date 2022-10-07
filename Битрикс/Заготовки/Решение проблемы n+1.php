@@ -21,18 +21,6 @@ function getTypeTreatment()
 	return $typeTreament;
 } 
 
-function getDropDownElementsPerType($dropDownListIB, $typeID)
-{
-	$dropDownList = [];
-	foreach($dropDownListIB as $el)
-	{
-		if($el['PROPERTY_PARENT_ID_VALUE'] == $typeID)
-			$dropDownList[] = $el;
-	}
-
-	return $dropDownList;
-}	
-
 function getTypeTreatmentDropDownList()
 {
 	$dropDownList = [];
@@ -52,4 +40,17 @@ function getTypeTreatmentDropDownList()
 	
 	return $dropDownList;
 }
+
+function getDropDownElementsPerType($dropDownListIB, $typeID)
+{
+	$dropDownList = [];
+	foreach($dropDownListIB as $el)
+	{
+		if($el['PROPERTY_PARENT_ID_VALUE'] == $typeID)
+			$dropDownList[] = $el;
+	}
+
+	return $dropDownList;
+}	
+
 ?>
