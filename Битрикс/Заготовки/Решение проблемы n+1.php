@@ -17,7 +17,7 @@ function getTypeTreatment()
 	);
 	while($typeIB = $typesIB->GetNext())
 	{
-		$typeIB['DROP_DOWN'] = getDropDownElementsPerType($dropDownListIB, $typeIB['ID']); 
+		$typeIB['DROP_DOWN_LIST'] = getDropDownElementsPerType($dropDownListIB, $typeIB['ID']); 
 		$typeTreament[] = $typeIB;
 	}
 
