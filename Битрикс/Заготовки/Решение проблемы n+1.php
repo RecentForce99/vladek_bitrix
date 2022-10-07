@@ -2,10 +2,11 @@
 
 //Лучше всего использовать компоненты, там этот функционал встроен по умолчанию.
 
-function getTypeTreatment()
+function getTypeTreatment() : array
 {
 	$dropDownListIB = getTypeTreatmentDropDownList();
 	$typeTreament = [];
+	
 	$typesIB = CIBlockElement::GetList(
 		array(),
 		array('IBLOCK_ID' => 21, 'ACTIVE' => 'Y'),
@@ -17,14 +18,16 @@ function getTypeTreatment()
 	);
 	while($typeIB = $typesIB->GetNext())
 	{
-		$typeIB['DROP_DOWN_LIST'] = getDropDownElementsPerType($dropDownListIB, $typeIB['ID']); 
+		if(!empty($dropDownListIB))
+			$typeIB['DROP_DOWN_LIST'] = getDropDownElementsPerType($dropDownListIB, $typeIB['ID']); 
+
 		$typeTreament[] = $typeIB;
 	}
 
 	return $typeTreament;
 } 
 
-function getTypeTreatmentDropDownList()
+function getTypeTreatmentDropDownList() : array
 {
 	$dropDownList = [];
 	$dropDownListIB = CIBlockElement::GetList(
@@ -44,7 +47,7 @@ function getTypeTreatmentDropDownList()
 	return $dropDownList;
 }
 
-function getDropDownElementsPerType($dropDownListIB, $typeID)
+function getDropDownElementsPerType($dropDownListIB, $typeID) : array
 {
 	$dropDownList = [];
 	foreach($dropDownListIB as $el)
@@ -54,6 +57,6 @@ function getDropDownElementsPerType($dropDownListIB, $typeID)
 	}
 
 	return $dropDownList;
-}	
+}
 
 ?>
