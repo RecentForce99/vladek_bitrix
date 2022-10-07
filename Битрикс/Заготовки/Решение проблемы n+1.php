@@ -6,7 +6,7 @@ function getTypeTreatment() : array
 {
 	$dropDownListIB = getTypeTreatmentDropDownList();
 	$typeTreament = [];
-	
+
 	$typesIB = CIBlockElement::GetList(
 		array(),
 		array('IBLOCK_ID' => 21, 'ACTIVE' => 'Y'),
@@ -30,6 +30,7 @@ function getTypeTreatment() : array
 function getTypeTreatmentDropDownList() : array
 {
 	$dropDownList = [];
+	
 	$dropDownListIB = CIBlockElement::GetList(
 		array(),
 		array('IBLOCK_ID' => 22, 'ACTIVE' => 'Y'),
@@ -50,6 +51,7 @@ function getTypeTreatmentDropDownList() : array
 function getDropDownElementsPerType($dropDownListIB, $typeID) : array
 {
 	$dropDownList = [];
+
 	foreach($dropDownListIB as $el)
 	{
 		if($el['PROPERTY_PARENT_ID_VALUE'] == $typeID)
