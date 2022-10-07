@@ -1,4 +1,7 @@
 <?php
+
+//Лучше всего использовать компоненты, там этот функционал встроен по умолчанию.
+
 function getTypeTreatment()
 {
 	$dropDownListIB = getTypeTreatmentDropDownList();
