@@ -105,8 +105,6 @@ class VladekStrings
         }
         return false;
     }
-
-    public function __destruct(){}
 }
 
 
