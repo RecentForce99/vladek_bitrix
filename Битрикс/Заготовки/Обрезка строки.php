@@ -48,13 +48,12 @@ class VladekStrings
     $length,
     $encoding = 'UTF-8';
 
-    public static function cutStringToSpecSymbol(string $str, int $length, array $specialSymbols, string $encoding='UTF-8') : string
+    public static function cutStringToSpecSymbol(string $str, int $length, array $specialSymbols = ['.'], string $encoding='UTF-8') : string
     {
         self::$length = $length;
         self::$encoding = $encoding;
         self::$originalString = $str;
         self::$specialSymbols = $specialSymbols;
-
 
         $str = strip_tags($str);
         if (mb_strlen($str, $encoding) <= $length) 
@@ -109,8 +108,6 @@ class VladekStrings
     }
 
     public function __destruct(){}
-
-
 }
 
 
