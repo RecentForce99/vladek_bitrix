@@ -39,6 +39,82 @@ function cutStringToDotOrComma($str, $length, $encoding='UTF-8') : string
     return $result;
 }
 
+class VladekStrings
+{
+    private static $originalString,  
+    $specialSymbols = [],
+    $strToArrayTransform = [],
+    $str, 
+    $length,
+    $encoding = 'UTF-8';
 
+    public static function cutStringToSpecSymbol(string $str, int $length, array $specialSymbols, string $encoding='UTF-8') : string
+    {
+        self::$length = $length;
+        self::$encoding = $encoding;
+        self::$originalString = $str;
+        self::$specialSymbols = $specialSymbols;
+
+
+        $str = strip_tags($str);
+        if (mb_strlen($str, $encoding) <= $length) 
+            return $str;
+
+        self::$str = $str;
+        self::convertCroppedStringToArray();
+        $result = self::removingUnnecessaryWords();
+    
+        return $result;
+    }
+
+    private static function convertCroppedStringToArray() : void
+    {
+        $str = self::$str;
+        $length = self::$length;
+        $encoding = self::$encoding;
+
+        $tmp = mb_substr($str, 0, $length, $encoding);
+        $croppedStr = mb_substr($tmp, 0, mb_strripos($tmp, ' ', 0, $encoding), $encoding);
+
+        $strToArrayTransform = [];
+        $strToArrayTransform = explode(' ', $croppedStr);
+
+        self::$strToArrayTransform = $strToArrayTransform;
+    }
+
+    private static function removingUnnecessaryWords() : string
+    {
+        $strToArrayTransform = self::$strToArrayTransform;
+        for( $i = count(self::$strToArrayTransform); $i > 0; $i-- )
+        {   
+            if(!isset($strToArrayTransform[$i])) continue;
+            if(self::issetSpecialSymbols($strToArrayTransform[$i]))
+                return implode(' ', $strToArrayTransform); 
+            else 
+                unset($strToArrayTransform[$i]);  
+        }
+
+        return self::$originalString;
+    }
+
+    private static function issetSpecialSymbols(string $element) : bool
+    {
+        $specialSymbols = self::$specialSymbols;
+        foreach ($specialSymbols as $symb)
+        {
+            if(mb_substr($element, -1) == $symb) 
+                return true;
+        }
+        return false;
+    }
+
+    public function __destruct(){}
+
+
+}
+
+
+//Пример вызова
+VladekStrings::cutStringToSpecSymbol($text, 300, array(',', '.'), 'UTF-8');
 
 ?> 
