@@ -1,4 +1,6 @@
 <?php
+
+//Разработчик функции mbCutString https://gist.github.com/dryks/3670ac078b700fae504a976447b24b7d 
  function mbCutString($str, $length, $postfix='...', $encoding='UTF-8')
     {
         if (mb_strlen($str, $encoding) <= $length)
@@ -37,6 +39,7 @@ function cutStringToDotOrComma($str, $length, $encoding='UTF-8') : string
 
     return $result;
 }
+
 
 class VladekStrings
 {
