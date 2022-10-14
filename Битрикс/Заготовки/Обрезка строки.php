@@ -106,6 +106,7 @@ class VladekStrings
             if(mb_substr($element, -1) == $symb) 
                 return true;
         }
+     
         return false;
     }
 }
